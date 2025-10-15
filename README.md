@@ -22,7 +22,7 @@ This project analyzes online retail transaction data to understand customer beha
 - `Description`: Product description
 - `Quantity`: Number of items purchased
 - `InvoiceDate`: Date and time of transaction
-- `UnitPrice`: Price per unit (GBP)
+- `UnitPrice`: Price per unit
 - `CustomerID`: Unique customer identifier
 - `Country`: Customer country
 
@@ -37,20 +37,29 @@ Removing unmatchable returns will minimally affect the validity of the sales ana
 Validation:
 * Attempted to find all matching returns and sales using business logic. When matching failed, counted total remaining returns and confirmed they represented a small percentage of the dataset.
 * Checked impact by comparing total sales and statistics before and after removing returns.
-* Manually checked and removed the largest returns and corresponding sales to ensure top outliers were not misrepresented.
-* 
-
-This method should reveal a better customer behavior.
+* Manually checked and removed the largest two return quantities and corresponding sales to ensure top outliers were not misrepresented while reducing the bais in the data set. 
 
 ## Project Plan
-* I tackled this analysis in four focused phases over two days. First, I dove deep into data cleaning wrestling with messy real-world issues like returns and missing values. Next, to build a solid foundation with descriptive statistics to understand our basic business health. Then come the exciting part: uncovering customer stories through segmentation and product analysis. Finally, I connect all the dots to provide actionable business recommendations.
-* How was the data managed throughout the collection, processing, analysis and interpretation steps?
-* Why did you choose the research methodologies you used?
+* High-Level Steps Taken:
+1. Data Collection: Downloaded the Online Retail Transactions dataset from Kaggle as a .csv file and imported it into Jupyter Notebook using Pandas
+2. Data Processing: Implemented ETL pipeline to clean data, handle missing values, and create new features like revenue calculations and transaction types
+3. Data Analysis & Interpretation: Visualized sales trends, customer segments, product performance, and transaction patterns over time using descriptive statistics and interactive charts
 
-## The rationale to map the business requirements to the Data Visualisations
+* Data Management:
+1. Data was managed using Pandas DataFrames throughout the entire process
+2. Cleaning and transformation steps were organized in structured functions within Jupyter Notebook for transparency and reproducibility
+3. Each analysis step included immediate visualization to validate results and ensure data quality
+
+*Research Methodologies Used:
+1. Exploratory Data Analysis (EDA)
+2. Descriptive Statistics 
+3. RFM Analysis
+4. Data Visualization techniques 
+
+## The rationale to map the business requirements to the Data Visualisations --
 * List your business requirements and a rationale to map them to the Data Visualisations
 
-## Analysis techniques used
+## Analysis techniques used --
 * List the data analysis methods used and explain limitations or alternative approaches.
 * How did you structure the data analysis techniques. Justify your response.
 * Did the data limit you, and did you use an alternative approach to meet these challenges?
@@ -58,23 +67,20 @@ This method should reveal a better customer behavior.
 
 ## Ethical considerations
 * Data privacy: All analysis used anonymized transaction data—no PII was exposed.
-* Bias/fairness: Checked for and documented bias in which customers or products drove the most sales.
-* Societal/legal: Ensured no results would harm customer privacy.
 * Adjusted outlier removal to respect business context (e.g., high-value, legitimate sales).
 
-## Dashboard Design
+## Dashboard Design --
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
 * Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
 * How were data insights communicated to technical and non-technical audiences?
 * Explain how the dashboard was designed to communicate complex data insights to different audiences. 
 
 ## Unfixed Bugs
-* No currently unfixed bugs—all code, data cleaning, and graphs work as expected for this notebook-based report.
-* Framework Shortcomings: No native support for matching returns across fuzzy product or time mismatches; chosen approach works for precise matches only.
+* No currently unfixed bugs all code, data cleaning, and graphs except plotly work as expected for this notebook-based report.
 * Skill Gaps: Identified the need to learn vectorized pandas/merge for speed (implemented with guidance).
-* Feedback Evidence: Instructor, Peer and LLM feedback helped improve cleaning workflow and documentation clarity. Adjusted approach from row-wise loops to merges for efficiency while working on return analysis though it was not successful at the end with the findings.
+* Feedback Evidence: Instructor, Peer and LLM feedback helped improve cleaning workflow and documentation clarity. 
 
-## Development Roadmap
+## Development Roadmap --
 * What challenges did you face, and what strategies were used to overcome these challenges?
 * What new skills or tools do you plan to learn next based on your project experience? 
 
@@ -95,24 +101,25 @@ Challenges Faced during the Data Cleaning:
 * plotly: Interactive customer segmentation/product charts
 
 ## Credits 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
-* You can break the credits section up into Content and Media, depending on what you have included in your project. 
+* The dataset used in this project was sourced from Kaggle.
+* I developed the analysis using the Code Institute Project Template 
+* Referred to Code Institute learning materials to review data visualization techniques.
+* Perplexity AI supported idea generation and clarification, while GitHub Copilot assisted with code review and optimization.
 
-### Content 
+
+### Content ---
 
 - The text for the Home page was taken from Wikipedia Article A
 - Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
 - The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
 
-### Media
+### Media ---
 
 - The photos used on the home and sign-up page are from This Open-Source site
 - The images used for the gallery page were taken from this other open-source site
 
 
 ## Acknowledgements (optional)
-* Thank the people who provided support through this project.
-* Emma for helping to find the ringt scope as otherwise I can work on this weeks 
-* Spenser for fine tunign the though process in Data Cleaning and Transformation 
-* Every team member who helped by unblocing me and asking help when the blocked
-* LLM tools for unblocking and branstorming support
+* Thank you to everyone who supported me throughout this project.
+* To my course instructor, for helping me refine my thought process in data cleaning and transformation.
+* And to my fellow team members, for their collaboration both when they helped me overcome challenges and when I could return the favor.
