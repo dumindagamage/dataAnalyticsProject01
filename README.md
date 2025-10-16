@@ -56,42 +56,112 @@ Validation:
 3. RFM Analysis
 4. Data Visualization techniques 
 
-## The rationale to map the business requirements to the Data Visualisations --
-* List your business requirements and a rationale to map them to the Data Visualisations
+## The rationale to map the business requirements to the Data Visualisations
+The goal of this project was to support business decisions by transforming raw transaction data into actionable insights. I tried to design  data visualisation with a specific business question or requirement in mind to make the analysis relevant and valuable as possible.
 
-## Analysis techniques used --
-* List the data analysis methods used and explain limitations or alternative approaches.
-* How did you structure the data analysis techniques. Justify your response.
-* Did the data limit you, and did you use an alternative approach to meet these challenges?
-* How did you use generative AI tools to help with ideation, design thinking and code optimisation?
+1. Understanding Business Performance
+- Key Business Metrics
+- Monthly Sales vs Returns Trend
+
+2. Customer Behavior Analysis
+- Customer Segmentation
+- RFM Analysis
+
+3. Product Strategy Optimization
+- Top Products by Revenue
+- Products by Return Value
+- Revenue by Product Category
+
+4. Sales & Marketing Planning
+- Sales by Day of Week
+- Monthly Sales Pattern
+- Country Performance
+
+## Analysis techniques used
+1. Data Cleaning & Preparation:
+- Techniques: Handled duplicates, filled missing product descriptions, categorized data set into (sales, returns), and created new features like Revenue and date components.
+- Approach: Used business context rather than pure statistical methods treated negative quantities as returns and capped extreme values instead of complete removal.
+
+2. Descriptive Analysis:
+- Techniques: Used Pandas to calculate key business metrics - total revenue, average transaction value, return rates, and customer/product counts.
+- Context: All metrics calculated separately for sales vs returns to provide accurate business picture.
+- Challenges: Initially attempted to remove return transactions along with their corresponding original sales by matching invoice numbers and product details. However, technical limitations in identifying these pairs accurately due to inconsistent invoice numbering and product matching complexities required extensive time and advanced pandas techniques. The final approach separated the dataset into distinct sales and returns analyses.
+
+3. Exploratory Data Analysis (EDA):
+- Techniques: Combined Matplotlib/Seaborn for static charts and Plotly for interactive visualizations to uncover patterns in sales trends, customer behavior, and product performance.
+- Visualizations: Line charts for trends, bar charts for rankings and scatter plots for segmentation.
+- GenAI Usage: Utilized Perplexity AI for brainstorming data analytics approaches and identifying how to address the business questions with the available dataset.
+
+4. Customer Segmentation:
+- Techniques: Implemented RFM (Recency, Frequency, Monetary) analysis using business-defined thresholds rather than statistical clustering.
+- Segmentation: Created four customer groups (VIP, Loyal, Regular, At-Risk) based on purchasing patterns for targeted marketing.
+
+5. Outlier Management:
+- Approach: Used business context and manual capping instead of statistical methods like IQR, preserving important bulk purchases while reducing skew.
+- Rationale: Maintained business-relevant transactions that statistical methods might incorrectly flag as outliers. (This approach was guided by instructor feedback emphasizing the importance of business context over rigid statistical rules.)
+
+
+## Findings and Conclusion
+
+1. Business Performance:
+The analysis revealed a healthy online retail business with £10.3M in gross sales revenue and a manageable 6.2% return rate. The customer base of 4,371 unique customers demonstrates solid market penetration, while the product portfolio of 4,069 items shows significant variety.
+
+2. Customer Behavior Insights:  Customer segmentation identified four distinct groups with clear behavioral patterns with the RFM analysis
+
+- VIP Customers (28% of customers, 77% of revenue): High-value segment spending £6,190 on average with frequent purchases (134 transactions) and high engagement (16 days recency). Critical for premium retention strategies.
+- Loyal Customers (32% of customers, 16% of revenue): Consistent purchasers with £1,182 average spend and regular activity (49 transactions, 55 days recency). Represent stable revenue streams.
+- Regular Customers (13% of customers, 5% of revenue): Moderate buyers with £881 average spend and 34 transactions. Show significant growth potential with proper engagement.
+- At-Risk Customers (26% of customers, 5% of revenue): Low-engagement segment with £463 average spend and infrequent purchases (207 days since last order). Require immediate reactivation efforts.
+
+3. Product Performance: The product analysis revealed
+- Significant revenue concentration in top products (15 products generating 12% of total revenue)
+- Strong performance in Home Decor and Lighting categories
+- High-return products requiring investigation
+
+4. Temporal Patterns: Clear seasonal and weekly patterns emerged
+- Consistent sales growth throughout the 2011 analysis period
+- November peak aligning with holiday shopping season preparation
+- Weekend purchasing patterns indicating consumer shopping habits
+- Stable monthly performance with identifiable seasonal trends
+
+5. Key Finding & Conclusion:
+- The VIP customers driving majority revenue, highlighting the importance of customer retention over acquisition. 
+
 
 ## Ethical considerations
-* Data privacy: All analysis used anonymized transaction data—no PII was exposed.
-* Adjusted outlier removal to respect business context (e.g., high-value, legitimate sales).
+* Data privacy: No PII data was found in the data set.
+* Adjusted outlier removal to respect business context (e.g., high-quantities).
 
-## Dashboard Design --
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
-* Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
-* How were data insights communicated to technical and non-technical audiences?
-* Explain how the dashboard was designed to communicate complex data insights to different audiences. 
+## Dashboard Design
+* Most visualizations are available within the notebooks.
+* The only interactive graph can be found in the repository under /insights.
 
 ## Unfixed Bugs
 * No currently unfixed bugs all code, data cleaning, and graphs except plotly work as expected for this notebook-based report.
 * Skill Gaps: Identified the need to learn vectorized pandas/merge for speed (implemented with guidance).
 * Feedback Evidence: Instructor, Peer and LLM feedback helped improve cleaning workflow and documentation clarity. 
 
-## Development Roadmap --
-* What challenges did you face, and what strategies were used to overcome these challenges?
-* What new skills or tools do you plan to learn next based on your project experience? 
-
-Challenges Faced during the Data Cleaning:
-* Returns could not be matched to an original sale within the data. It took more time to analyze and identify there is not way to match them and remove. 
-
+## Development Roadmap
+1. Challenges Faced:
+* During the Data Cleaning, Returns could not be matched to their original sales within the dataset. It took considerable time to analyze and confirm that there was no reliable way to link them. I spent longer than expected exploring this before realizing it was beyond the scope of a two-day project. Although it was a valuable learning experience, it affected my time management as I dedicated more effort to this task than planned.
+2. Lessons Learned:
+* Iterative Approach: Data cleaning and analysis often requires multiple passes as understanding deepens
+* Business Context is Crucial: Technical analysis must be grounded in real-world business understanding
+* Visualization Simplicity: Clear, simple visualizations often communicate insights more effectively than complex charts
+* Documentation as You Go: Maintaining notes and comments throughout the process saves time later
+* After cleaning up data (removing duplicates, filtering rows), always reset the index. Otherwise, it will end up with gaps that break things later.
+* When working with categories (like weekdays or product types), comparisons can be tricky. Sometimes asking for 'Sunday' returns nothing because pandas sees categories differently than regular text. The fix? Either convert to text first or set up categories properly from the start.
+3. New skills or tools planning to learn:
+* Develop the ability to interpret the story behind the data, as datasets alone are not sufficient for making effective ETL and analysis decisions.
+* Gain a deeper understanding of pandas and various data visualization libraries and tools.
+* Enhance proficiency with GitHub Copilot and Generative AI tools to support brainstorming and accelerate development.
 
 ## Deployment
-* All code and analysis notebooks are runnable in Jupyter Notebook (.ipynb).
-* Data cleaning and analysis steps were well documented along with the code for reproducibility.
-* All dependencies listed in requirements.txt (pandas, numpy, matplotlib, seaborn, plotly).
+* All notebooks are executable in Jupyter Notebook (.ipynb).
+* Data cleaning and analysis steps are clearly documented.
+* Run the ETL notebook first to generate the processed dataset.
+* Then, use the analysis notebook with the processed data to produce insights.
+* All required dependencies (pandas, numpy, matplotlib, seaborn, plotly) are listed in requirements.txt.
 
 ## Main Data Analysis Libraries
 * pandas: Data loading, cleaning, transformation (pd.read_csv, .groupby, .merge)
@@ -106,20 +176,14 @@ Challenges Faced during the Data Cleaning:
 * Referred to Code Institute learning materials to review data visualization techniques.
 * Perplexity AI supported idea generation and clarification, while GitHub Copilot assisted with code review and optimization.
 
-
-### Content ---
-
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+### Content
+- Some sections of README were refined using ChatGPT.
 
 ### Media ---
-
 - The photos used on the home and sign-up page are from This Open-Source site
 - The images used for the gallery page were taken from this other open-source site
 
-
-## Acknowledgements (optional)
-* Thank you to everyone who supported me throughout this project.
+## Acknowledgements
+* Thank you to everyone who supported me in neumerous ways throughout this project.
 * To my course instructor, for helping me refine my thought process in data cleaning and transformation.
 * And to my fellow team members, for their collaboration both when they helped me overcome challenges and when I could return the favor.
