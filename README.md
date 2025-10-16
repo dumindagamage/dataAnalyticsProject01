@@ -100,6 +100,10 @@ The goal of this project was to support business decisions by transforming raw t
 - Approach: Used business context and manual capping instead of statistical methods like IQR, preserving important bulk purchases while reducing skew.
 - Rationale: Maintained business-relevant transactions that statistical methods might incorrectly flag as outliers. (This approach was guided by instructor feedback emphasizing the importance of business context over rigid statistical rules.)
 
+6. Suggestions for Further Improvements:
+- The products DOTCOM POSTAGE and POSTAGE contribute a significant portion of total sales volume. However, it’s unclear whether they should be classified as actual sales for analytical purposes.
+- Additionally, items such as Returns, Amazon Fee, Bank Charges, CRUK Commission, and Postage are currently included in the return data. Since these represent business expenses rather than true returns, they should be excluded from the return analysis for more accurate insights.
+- Improve product categorization, as many items are currently grouped under the OTHER category, which limits the clarity and accuracy of the analysis.
 
 ## Findings and Conclusion
 
@@ -107,7 +111,7 @@ The goal of this project was to support business decisions by transforming raw t
 The analysis revealed a healthy online retail business with £10.3M in gross sales revenue and a manageable 6.2% return rate. The customer base of 4,371 unique customers demonstrates solid market penetration, while the product portfolio of 4,069 items shows significant variety.
 
 2. Customer Behavior Insights:  Customer segmentation identified four distinct groups with clear behavioral patterns with the RFM analysis
-
+- The top customer’s purchase volume is approximately seven times greater than that of the second-highest customer.
 - VIP Customers (28% of customers, 77% of revenue): High-value segment spending £6,190 on average with frequent purchases (134 transactions) and high engagement (16 days recency). Critical for premium retention strategies.
 - Loyal Customers (32% of customers, 16% of revenue): Consistent purchasers with £1,182 average spend and regular activity (49 transactions, 55 days recency). Represent stable revenue streams.
 - Regular Customers (13% of customers, 5% of revenue): Moderate buyers with £881 average spend and 34 transactions. Show significant growth potential with proper engagement.
@@ -137,7 +141,7 @@ The analysis revealed a healthy online retail business with £10.3M in gross sal
 * The only interactive graph can be found in the repository under /insights.
 
 ## Unfixed Bugs
-* No currently unfixed bugs all code, data cleaning, and graphs except plotly work as expected for this notebook-based report.
+* No currently unfixed bugs: all code, data cleaning, and graphs except plotly work as expected for this notebook-based report.
 * Skill Gaps: Identified the need to learn vectorized pandas/merge for speed (implemented with guidance).
 * Feedback Evidence: Instructor, Peer and LLM feedback helped improve cleaning workflow and documentation clarity. 
 
@@ -178,10 +182,6 @@ The analysis revealed a healthy online retail business with £10.3M in gross sal
 
 ### Content
 - Some sections of README were refined using ChatGPT.
-
-### Media ---
-- The photos used on the home and sign-up page are from This Open-Source site
-- The images used for the gallery page were taken from this other open-source site
 
 ## Acknowledgements
 * Thank you to everyone who supported me in neumerous ways throughout this project.
